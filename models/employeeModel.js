@@ -19,7 +19,7 @@ const employeeSchema = new mongoose.Schema({
     },
     gender:{
         type: String,
-        enum: ['male', 'female', 'other'], //allows for only 3 options
+        enum: ['male', 'female', 'other'], //allows for only 3 options. will convert to lower in the controller
         required: true
     },
     salary:{
