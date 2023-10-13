@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
@@ -14,3 +14,9 @@ mongoose.connect('mongodb://localhost:27017/comp3123_assignment1', {
 app.use(express.json());
 app.use(userRoutes);
 app.use(employeeRoutes);
+
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
