@@ -132,15 +132,15 @@ exports.updateEmployee = async(req,res) => {
 
 exports.deleteEmployee = async(req, res) => {
     try{
-        const employeeId = req.params.eid;
-        const deletedEmployee = await Employee.findByIdAndDelete({_id: employeeId}); //returns object for user document, or null
+        const employeeId = req.query.eid; //user query here because the assignment specifies query string for url
+        const deletedEmployee = await Employee.findByIdAndDelete({employeeId}); //returns object for user document, or null
         if(!deletedEmployee){
             return res.status(400).json({
                 status: false,
                 message: "Employee not found!"
             });
         }else{
-            res.status(204).end(); //deletions don't return json body hence 204 response code.
+            res.status(204).end(); //deletions don't typically return json body hence 204 response code.
         }
 
     }catch(error){
