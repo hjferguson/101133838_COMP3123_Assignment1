@@ -53,7 +53,7 @@ exports.createEmployee = async(req,res) => {
             });
         }
 
-        gender = toLowerCase(gender);
+        gender = gender.toLowerCase();
         if(gender != 'male' && gender != 'female' && gender != 'other'){
             return res.status(400).json({
                 status: false,
@@ -108,6 +108,11 @@ exports.updateEmployee = async(req,res) => {
 
             for(let key in updates){
                 if(updates[key] !== null && updates[key] !== undefined){
+
+                    if(key === 'gender'){
+                        updates[key] = updates[key].toLowerCase();
+                    }
+
                     existingEmployee[key] = updates[key];
                 }
             }
