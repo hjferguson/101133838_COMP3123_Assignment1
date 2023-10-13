@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "da4dc233-6eef-4aec-9420-a6331a15c7ef",
+		"name": "Fullstack_assign1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29779587"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"your_username\",\r\n    \"email\": \"your_email@example.com\",\r\n    \"password\": \"your_password\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/user/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"your_username\",\r\n    \"email\": \"your_email@example.com\",\r\n    \"password\": \"your_password\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all employees",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create new employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI4ZDFjOWUyMTI2Zjc0ZGYyNWNiOWQiLCJpYXQiOjE2OTcyMzA2MzAsImV4cCI6MTY5NzIzNDIzMH0.Ms4K9UGyBIPWWrfXlEgPzGTQa78I8GRbeHdAVHuNgNU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"first_name\": \"Tam\",\r\n\t\"last_name\": \"Harrow\",\r\n\t\"email\": \"tam@hollywood.com\",\r\n\t\"gender\": \"Male\",\r\n\t\"salary\": \"125500.00\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/emp/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "getEmpById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/v1/emp/employees/6529aff5f32263ed30220138"
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmp",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5YjBmY2YzMjI2M2VkMzAyMjAxM2QiLCJpYXQiOjE2OTcyMzEyMTcsImV4cCI6MTY5NzIzNDgxN30.oJd4slE3FsfXmqIq7QZ08OhZHCL5RBdjd35x816oNXY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"first_name\": \"Tom\",\r\n\t\"last_name\": \"Harrow\",\r\n\t\"email\": \"tom@hollywood.com\",\r\n\t\"gender\": \"Male\",\r\n\t\"salary\": \"110500.00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/v1/emp/employees/6529aff5f32263ed30220138"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEmp",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5YjBmY2YzMjI2M2VkMzAyMjAxM2QiLCJpYXQiOjE2OTcyMzIyMDYsImV4cCI6MTY5NzIzNTgwNn0._sU5VnNk4yfQ4fsXafPc2oqVfGudCExgxR4swikJwm4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/emp/employees?eid=6529aff5f32263ed30220138",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"emp",
+						"employees"
+					],
+					"query": [
+						{
+							"key": "eid",
+							"value": "6529aff5f32263ed30220138"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

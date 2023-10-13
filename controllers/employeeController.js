@@ -138,7 +138,7 @@ exports.updateEmployee = async(req,res) => {
 exports.deleteEmployee = async(req, res) => {
     try{
         const employeeId = req.query.eid; //user query here because the assignment specifies query string for url
-        const deletedEmployee = await Employee.findByIdAndDelete({employeeId}); //returns object for user document, or null
+        const deletedEmployee = await Employee.findByIdAndDelete(employeeId); //returns object for user document, or null
         if(!deletedEmployee){
             return res.status(400).json({
                 status: false,
