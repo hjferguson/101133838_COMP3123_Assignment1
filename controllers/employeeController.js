@@ -45,7 +45,7 @@ exports.getEmployeeById = async(req,res) => {
 
 exports.createEmployee = async(req,res) => {
     try{
-        let {first_name,last_name,email,gender,salary} = req.body;
+        let {first_name, last_name, email, gender, salary} = req.body;
         if(!first_name || !last_name || !email || !gender || !salary){
             return res.status(400).json({
                 status: false,
@@ -94,7 +94,7 @@ exports.createEmployee = async(req,res) => {
     }
 };
 
-exports.updateEmployee = async(res,req) => {
+exports.updateEmployee = async(req,res) => {
     try{
         const employeeId = req.params.eid;
         const existingEmployee = await Employee.findOne({ _id: employeeId }); //returns object for user document, or null
@@ -104,8 +104,14 @@ exports.updateEmployee = async(res,req) => {
                 message: "Employee not found!"
             });
         }else{
-            let
+            let updates = req.body;
 
+            for(let key in updates){
+                if(updates[key] !== null && updates[key] !== undefined){
+                    existingEmployee[key] = updates[key];
+                }
+            }
+            await existingEmployee.save()
 
 
             res.status(200).json({
@@ -117,6 +123,27 @@ exports.updateEmployee = async(res,req) => {
 
     }catch(error){
         console.log(error)
+        res.status(500).json({
+            status: false,
+            message: 'Server error'
+        });
+    }
+};
+
+exports.deleteEmployee = async(req, res) => {
+    try{
+        const employeeId = req.params.eid;
+        const deletedEmployee = await Employee.findByIdAndDelete({_id: employeeId}); //returns object for user document, or null
+        if(!deletedEmployee){
+            return res.status(400).json({
+                status: false,
+                message: "Employee not found!"
+            });
+        }else{
+            res.status(204).end(); //deletions don't return json body hence 204 response code.
+        }
+
+    }catch(error){
         res.status(500).json({
             status: false,
             message: 'Server error'
