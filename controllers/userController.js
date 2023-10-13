@@ -16,7 +16,8 @@ exports.signup = async(req,res) => {
         }
 
         const saltRounds = 10; //higher rounds make salts more secure, but also makes program less efficient. google says 10 is a good balance
-        const hashedPass = bcrypt.hashSync(password, saltRounds);
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hashedPass = bcrypt.hashSync(password, salt);
         const newUser = new User({
             username,
             email,
@@ -38,7 +39,7 @@ exports.signup = async(req,res) => {
 
 exports.login = async(req,res) => {
     try{
-        const {username, password} = req.body;
+        const {username, email, password} = req.body;
         
         //want to make sure this user exists. 
         const existingUser = await User.findOne({ $or: [{username}, {email} ]}); //returns object for user document, or null
