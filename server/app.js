@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
 
-mongoose.connect('mongodb://localhost:27017/comp3123_assignment1', {
+mongoose.connect('mongodb://localhost:27017/userDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
