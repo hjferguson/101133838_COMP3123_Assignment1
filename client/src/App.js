@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignUp from './components/SignUp/SignUp'; // Import the SignUp component
 import './App.css';
 
 function App() {
@@ -18,10 +19,15 @@ function App() {
     <Router>
       <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
       <button onClick={toggleLogin}>Toggle Login State</button> {/* Temporary button */}
-      {/* Other components and routes */}
+      <Routes>
+        {/* Define the route for the SignUp component */}
+        <Route path="/signup" element={<SignUp />} />
+
+        {/* Add additional routes here as needed */}
+        {/* Example: <Route path="/some-path" element={<SomeComponent />} /> */}
+      </Routes>
     </Router>
   );
 }
-
 
 export default App;
