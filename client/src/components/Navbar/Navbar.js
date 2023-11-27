@@ -14,7 +14,7 @@ function Navbar({ isAuthenticated, onLogout }) {
       ) : (
         <>
           <NavLink to="/signup" activeClassName="active-link">Sign Up</NavLink>
-          <NavLink to="/login" activeClassName="active-link">Login</NavLink>
+          <NavLink to="/signin" activeClassName="active-link">Sign In</NavLink>
         </>
       )}
     </nav>
