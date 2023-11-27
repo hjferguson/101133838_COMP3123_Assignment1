@@ -8,7 +8,7 @@ function SignUp() {
     email: '',
     password: '',
   });
-  const [serverMessage, setServerMessage] = useState(''); // State for server response message
+  const [serverMessage, setServerMessage] = useState(''); 
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -17,12 +17,38 @@ function SignUp() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Send formData to your backend to register the user
-    // Example:
-    // const response = await fetch('/api/signup', { method: 'POST', body: JSON.stringify(formData) });
-    // const result = await response.json();
-    // setServerMessage(result.message);
-    // if (response.ok) navigate('/login');
+    
+    try{
+      const response = await fetch('http://localhost:3000/api/v2/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      setServerMessage(result.message);
+
+      if(response.status === 201){
+        navigate('/signin');
+      }else{
+        if(response.status === 400){
+          setServerMessage(result.message);
+        }
+        else if(response.status ===500){
+          setServerMessage(result.message)
+        }
+        else{
+          setServerMessage("An unexpected error occured due to poor programming. Sorry. :3")
+        }
+        
+      }
+
+    }catch (error){
+      console.error('Signup failed:', error);
+      setServerMessage('Sign up failed. Please try again later...')
+    }
   };
 
   return (

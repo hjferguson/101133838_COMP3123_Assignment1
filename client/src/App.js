@@ -21,12 +21,10 @@ function App() {
       <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
       <button onClick={toggleLogin}>Toggle Login State</button> {/* Temporary button */}
       <Routes>
-        {/* Define the route for the SignUp component */}
+        
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
 
-        {/* Add additional routes here as needed */}
-        {/* Example: <Route path="/some-path" element={<SomeComponent />} /> */}
       </Routes>
     </Router>
   );

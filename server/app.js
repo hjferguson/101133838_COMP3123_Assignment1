@@ -11,6 +11,10 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
+const cors = require('cors');
+app.use(cors());
+
+
 app.use(express.json());
 app.use(userRoutes);
 app.use(employeeRoutes);

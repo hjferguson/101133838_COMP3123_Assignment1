@@ -33,20 +33,24 @@ exports.signup = async(req,res) => {
 
     }catch(error){
         console.log(error);
+        res.status(500).json({
+            status: false,
+            message: "Internal server error"
+        });
     }
 
 };
 
-exports.login = async(req,res) => {
+exports.signin = async(req,res) => {
     try{
-        const {username, email, password} = req.body;
+        const {email, password} = req.body;
         
         //want to make sure this user exists. 
-        const existingUser = await User.findOne({ $or: [{username}, {email} ]}); //returns object for user document, or null
+        const existingUser = await User.findOne({email}); //returns object for user document, or null
         if(!existingUser){
             return res.status(400).json({
                 status: false,
-                message: "Invalid username or password! :["
+                message: "Invalid email or password! :["
             });
         }
 
@@ -55,7 +59,7 @@ exports.login = async(req,res) => {
         if(!isPasswordValid){
             return res.status(400).json({
                 status: false,
-                message: "Invalid username or password! :["
+                message: "Invalid email or password! :["
             });
         }
 
@@ -72,6 +76,10 @@ exports.login = async(req,res) => {
 
     }catch(error){
         console.log(error);
+        res.status(500).json({
+            status: false,
+            message: "Internal server error"
+        });
     }
 
 };
