@@ -3,6 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
+import GuestHomePage from './components/GuestHomePage/GuestHomePage';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/" element={<GuestHomePage />} />
 
       </Routes>
     </Router>
