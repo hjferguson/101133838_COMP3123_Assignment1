@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import GuestHomePage from './components/GuestHomePage/GuestHomePage';
+import Dashboard from './components/Dashboard/Dashboard';
 import ProtectRoutes from './components/ProtectRoutes';
 import './App.css';
 
@@ -28,8 +29,8 @@ function App() {
       <Routes>
         
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/" element={isAuthenticated ? <GuestHomePage /> : <GuestHomePage />} /> {/*Turnary if user logged or not*/}
+        <Route path="/signin" element={<SignIn setAuthStatus={setIsAuthenticated} />} />
+        <Route path="/" element={isAuthenticated ? <Dashboard /> : <GuestHomePage />} /> {/*Turnary if user logged or not*/}
         {/*use ProtectRoutes if route requires auth to access*/}
 
 
