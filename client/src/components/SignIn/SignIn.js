@@ -15,13 +15,42 @@ function SignIn() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Send formData to your backend to register the user
-    // Example:
-    // const response = await fetch('/api/signup', { method: 'POST', body: JSON.stringify(formData) });
-    // const result = await response.json();
-    // setServerMessage(result.message);
-    // if (response.ok) navigate('/login');
+    event.preventDefault(); //allows for async
+    
+    try{
+      const response = await fetch('http://localhost:3000/api/v2/user/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      setServerMessage(result.message);
+
+      if (response.ok) {
+        localStorage.setItem('token', result.token);
+        navigate('/home');
+      } else {
+        // It's often useful to log the entire response for debugging
+        console.error('Response error:', response);
+      
+        if(response.status === 401) {
+          setServerMessage('Authentication failed. Please check your credentials.');
+        } else if(response.status === 500) {
+          setServerMessage('Server error. Please try again later.');
+        } else {
+          setServerMessage('An unexpected error occurred. Please try again.');
+        }
+      }
+      
+
+
+    } catch (error) {
+      console.error('Sign in failed: ', error);
+      setServerMessage('Sign in failed. Please try again later. :c');
+    }
   };
 
   return (
