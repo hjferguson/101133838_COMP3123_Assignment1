@@ -155,3 +155,41 @@ exports.deleteEmployee = async(req, res) => {
         });
     }
 };
+
+
+const getStatistics = async () => {
+    try {
+      const totalEmployees = await Employee.countDocuments();
+  
+      const genderDistribution = await Employee.aggregate([
+        { $group: { _id: '$gender', count: { $sum: 1 } } }
+      ]);
+  
+      const averageSalary = await Employee.aggregate([
+        { $group: { _id: null, averageSalary: { $avg: '$salary' } } }
+      ]);
+  
+      return {
+        totalEmployees,
+        genderDistribution,
+        averageSalary: averageSalary[0].averageSalary
+      };
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+  exports.getStatistics = async (req, res) => {
+    try {
+        const stats = await getStatistics();
+        res.status(200).json({
+            status: true,
+            data: stats
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: 'Server error'
+        });
+    }
+};
