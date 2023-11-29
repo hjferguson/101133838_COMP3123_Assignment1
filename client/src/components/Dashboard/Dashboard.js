@@ -39,7 +39,7 @@ function UserDashboard() {
     datasets: [{
       label: 'Gender Distribution',
       data: statistics.genderDistribution.map(g => g.count),
-      backgroundColor: ['#1E90FF', 'red', 'green']
+      backgroundColor: ['#1E90FF', '#FF69B4', '#FCF434']
      
     }]
   };
