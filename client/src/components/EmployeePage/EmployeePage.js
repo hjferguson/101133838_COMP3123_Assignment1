@@ -35,7 +35,6 @@ function EmployeePage() {
   };
 
   const handleEmployeeClick = (employee) => {
-    console.log("Employee clicked:", employee);
     setSelectedEmployee(employee);
     setNewEmployee({  // This pre-fills the form with the employee's current details
       first_name: employee.first_name,
@@ -83,7 +82,6 @@ function EmployeePage() {
         },
         body: JSON.stringify(newEmployee)
       });
-      console.log(newEmployee)
       if (response.status === 201) {
         fetchEmployees(); // Re-fetch employees to update the list
       } else {
@@ -95,6 +93,26 @@ function EmployeePage() {
 
     setNewEmployee({ first_name: '', last_name: '', email: '', gender: '', salary: 0 });
     setShowAddForm(false); // Hide form after submission
+  };
+
+  const handleDeleteEmployee = async (employeeId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`http://localhost:3000/api/v2/emp/employees?eid=${employeeId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  
+      if (response.ok) {
+        fetchEmployees();  // Re-fetch the employee list to reflect the deletion
+      } else {
+        console.error('Failed to delete employee');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   
@@ -116,7 +134,7 @@ function EmployeePage() {
               }}>Edit</button>
               <button onClick={(e) => {
                 e.stopPropagation();
-                // handleDelete logic here
+                handleDeleteEmployee(employee._id);
               }}>Delete</button>
             </div>
           </li>
