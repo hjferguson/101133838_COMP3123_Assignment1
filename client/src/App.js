@@ -5,7 +5,8 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import GuestHomePage from './components/GuestHomePage/GuestHomePage';
 import Dashboard from './components/Dashboard/Dashboard';
-import ProtectRoutes from './components/ProtectRoutes';
+import EmployeePage from './components/EmployeePage/EmployeePage';
+import ProtectRoute from './components/ProtectRoute';
 import './App.css';
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn setAuthStatus={setIsAuthenticated} />} />
         <Route path="/" element={isAuthenticated ? <Dashboard /> : <GuestHomePage />} /> {/*Turnary if user logged or not*/}
+        {/* <Route path="/employees" element={<ProtectRoute><EmployeePage />, {isAuthenticated}</ProtectRoute>} /> */}
+        <Route path="/employees" element={<EmployeePage />} />
         {/*use ProtectRoutes if route requires auth to access*/}
 
 
