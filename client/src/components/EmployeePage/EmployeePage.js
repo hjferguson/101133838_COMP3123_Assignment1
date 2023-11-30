@@ -142,97 +142,101 @@ function EmployeePage() {
     </ul>
       
       {isUpdating && selectedEmployee ? (
-      <form onSubmit={handleUpdateEmployee}>
-        <input
-          className="form-input"
-          name="first_name"
-          value={newEmployee.first_name}  // Use newEmployee state
-          onChange={handleInputChange}
-          placeholder="First Name"
-        />
-        <input
-          className="form-input"
-          name="last_name"
-          value={newEmployee.last_name}  // Use newEmployee state
-          onChange={handleInputChange}
-          placeholder="Last Name"
-        />
-        <input 
-          className="form-input"
-          name="email"
-          value={newEmployee.email}  // Use newEmployee state
-          onChange={handleInputChange}
-          placeholder="Email"
-        />
-        <select 
-          className="form-input"
-          name="gender"
-          value={newEmployee.gender}  // Use newEmployee state
-          onChange={handleInputChange}
-        >
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <input 
-          className="form-input"
-          name="salary"
-          type="number"
-          value={newEmployee.salary}  // Use newEmployee state
-          onChange={handleInputChange}
-          placeholder="Salary"
-        />
-        <button className="submit-button" type="submit">Update Employee</button>
-      </form>
+        <div className="form-container">
+          <form onSubmit={handleUpdateEmployee}>
+            <input
+              className="form-input"
+              name="first_name"
+              value={newEmployee.first_name}  // Use newEmployee state
+              onChange={handleInputChange}
+              placeholder="First Name"
+            />
+            <input
+              className="form-input"
+              name="last_name"
+              value={newEmployee.last_name}  // Use newEmployee state
+              onChange={handleInputChange}
+              placeholder="Last Name"
+            />
+            <input 
+              className="form-input"
+              name="email"
+              value={newEmployee.email}  // Use newEmployee state
+              onChange={handleInputChange}
+              placeholder="Email"
+            />
+            <select 
+              className="form-input"
+              name="gender"
+              value={newEmployee.gender}  // Use newEmployee state
+              onChange={handleInputChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <input 
+              className="form-input"
+              name="salary"
+              type="number"
+              value={newEmployee.salary}  // Use newEmployee state
+              onChange={handleInputChange}
+              placeholder="Salary"
+            />
+            <button className="submit-button" type="submit">Update Employee</button>
+          </form>
+        </div>
+
   ) : showAddForm && (
-        // Form for adding a new employee
-        <form onSubmit={handleCreateNew}>
-          <input
-            className="form-input"
-            name="first_name"
-            value={newEmployee.first_name}
-            onChange={handleInputChange}
-            placeholder="First Name"
-          />
-          <input
-            className="form-input"
-            name="last_name"
-            value={newEmployee.last_name}
-            onChange={handleInputChange}
-            placeholder="Last Name"
-          />
-          <input 
-            className="form-input"
-            name="email"
-            value={newEmployee.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-          />
-          <select 
-            className="form-input"
-            name="gender"
-            value={newEmployee.gender}
-            onChange={handleInputChange}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <input 
-            className="form-input"
-            name="salary"
-            type="number"
-            value={newEmployee.salary}
-            onChange={handleInputChange}
-            placeholder="Salary"
-          />
-          <button className="submit-button" type="submit">Add Employee</button>
-        </form>
+        <div className="form-container">
+          <form onSubmit={handleCreateNew}>
+            <input
+              className="form-input"
+              name="first_name"
+              value={newEmployee.first_name}
+              onChange={handleInputChange}
+              placeholder="First Name"
+            />
+            <input
+              className="form-input"
+              name="last_name"
+              value={newEmployee.last_name}
+              onChange={handleInputChange}
+              placeholder="Last Name"
+            />
+            <input 
+              className="form-input"
+              name="email"
+              value={newEmployee.email}
+              onChange={handleInputChange}
+              placeholder="Email"
+            />
+            <select 
+              className="form-input"
+              name="gender"
+              value={newEmployee.gender}
+              onChange={handleInputChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <input 
+              className="form-input"
+              name="salary"
+              type="number"
+              value={newEmployee.salary}
+              onChange={handleInputChange}
+              placeholder="Salary"
+            />
+            <button className="submit-button" type="submit">Add Employee</button>
+          </form>
+        </div>
       )}
   
-      <button onClick={() => {
+      <button className="newButt" onClick={() => {
         setShowAddForm(true);
         setIsUpdating(false);
         setSelectedEmployee(null);
